@@ -4,6 +4,8 @@ A React app that shows the current weather for a city and recommends clothing it
 
 **Author:** Mohammad Farid
 
+**Live demo:** [https://mfprojects355.github.io/se_project_react](https://mfprojects355.github.io/se_project_react)
+
 ## Tech stack
 
 - React 18
