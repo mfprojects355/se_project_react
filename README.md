@@ -19,11 +19,11 @@ npm run dev
 
 ## Scripts
 
-| Command        | Description              |
-| -------------- | ------------------------ |
-| `npm run dev`  | Start dev server         |
-| `npm run build`| Production build         |
-| `npm run lint` | Run ESLint               |
+| Command           | Description              |
+| ----------------- | ------------------------ |
+| `npm run dev`     | Start dev server         |
+| `npm run build`   | Production build         |
+| `npm run lint`    | Run ESLint               |
 | `npm run preview` | Preview production build |
 
 ## Weather API

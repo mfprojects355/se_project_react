@@ -1,21 +1,21 @@
-import { APIkey, latitude, longitude, weatherCity } from './constants'
+import { APIkey, coordinates, weatherCity } from "./constants";
 
-const WEATHER_API_URL = 'https://api.openweathermap.org/data/2.5/weather'
+const WEATHER_API_URL = "https://api.openweathermap.org/data/2.5/weather";
 
 export function getWeatherCondition(temperature) {
   if (temperature >= 86) {
-    return 'hot'
+    return "hot";
   }
 
   if (temperature >= 66) {
-    return 'warm'
+    return "warm";
   }
 
-  return 'cold'
+  return "cold";
 }
 
 export function getDefaultWeatherData() {
-  const fallbackTemperatureF = 75
+  const fallbackTemperatureF = 75;
 
   return {
     temperature: {
@@ -24,16 +24,16 @@ export function getDefaultWeatherData() {
     },
     weather: getWeatherCondition(fallbackTemperatureF),
     city: weatherCity,
-    condition: 'cloudy',
+    condition: "cloudy",
     isDay: true,
-  }
+  };
 }
 
 export function processWeatherData(data) {
-  const temperatureF = Math.round(data.main.temp)
-  const temperatureC = Math.round((temperatureF - 32) * (5 / 9))
-  const now = Date.now() / 1000
-  const isDay = now >= data.sys.sunrise && now < data.sys.sunset
+  const temperatureF = Math.round(data.main.temp);
+  const temperatureC = Math.round((temperatureF - 32) * (5 / 9));
+  const now = Date.now() / 1000;
+  const isDay = now >= data.sys.sunrise && now < data.sys.sunset;
 
   return {
     temperature: {
@@ -44,21 +44,21 @@ export function processWeatherData(data) {
     city: weatherCity,
     condition: data.weather[0].main.toLowerCase(),
     isDay,
-  }
+  };
 }
 
 export async function fetchWeatherData() {
-  const url = `${WEATHER_API_URL}?lat=${latitude}&lon=${longitude}&units=imperial&appid=${APIkey}`
+  const url = `${WEATHER_API_URL}?lat=${coordinates.latitude}&lon=${coordinates.longitude}&units=imperial&appid=${APIkey}`;
 
-  const response = await fetch(url)
+  const response = await fetch(url);
 
   if (!response.ok) {
-    const errorData = await response.json().catch(() => ({}))
-    const message = errorData.message || 'Failed to fetch weather data'
-    throw new Error(message)
+    const errorData = await response.json().catch(() => ({}));
+    const message = errorData.message || "Failed to fetch weather data";
+    throw new Error(message);
   }
 
-  const data = await response.json()
+  const data = await response.json();
 
-  return processWeatherData(data)
+  return processWeatherData(data);
 }

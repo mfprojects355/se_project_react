@@ -1,11 +1,11 @@
-import WeatherCard from '../WeatherCard/WeatherCard'
-import ItemCard from '../ItemCard/ItemCard'
-import './Main.css'
+import WeatherCard from "../WeatherCard/WeatherCard";
+import ItemCard from "../ItemCard/ItemCard";
+import "./Main.css";
 
 function Main({ weatherData, clothingItems, onCardClick }) {
   const filteredClothingItems = clothingItems.filter(
     (item) => item.weather === weatherData.weather,
-  )
+  );
 
   return (
     <main className="main">
@@ -19,7 +19,7 @@ function Main({ weatherData, clothingItems, onCardClick }) {
         ))}
       </ul>
     </main>
-  )
+  );
 }
 
-export default Main
+export default Main;

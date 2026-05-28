@@ -1,23 +1,23 @@
-const imageUrlPattern = /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i
+const imageUrlPattern = /\.(png|jpe?g|gif|webp|svg)(\?.*)?$/i;
 
 function isValidImageUrl(url) {
-  const trimmedUrl = url.trim()
+  const trimmedUrl = url.trim();
 
   if (!trimmedUrl) {
-    return false
+    return false;
   }
 
   try {
-    const parsedUrl = new URL(trimmedUrl)
+    const parsedUrl = new URL(trimmedUrl);
 
-    if (!['http:', 'https:'].includes(parsedUrl.protocol)) {
-      return false
+    if (!["http:", "https:"].includes(parsedUrl.protocol)) {
+      return false;
     }
 
-    return imageUrlPattern.test(parsedUrl.pathname)
+    return imageUrlPattern.test(parsedUrl.pathname);
   } catch {
-    return false
+    return false;
   }
 }
 
-export default isValidImageUrl
+export default isValidImageUrl;

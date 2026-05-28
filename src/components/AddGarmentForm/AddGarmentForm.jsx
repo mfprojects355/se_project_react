@@ -7,7 +7,7 @@ function AddGarmentForm({
   onImageUrlChange,
   onWeatherChange,
 }) {
-  const imageErrorId = 'add-clothes-image-error'
+  const imageErrorId = "add-clothes-image-error";
 
   return (
     <>
@@ -27,24 +27,24 @@ function AddGarmentForm({
       <label className="modal__label" htmlFor="add-clothes-image">
         <span
           className={`modal__label-text ui-text-2_bold ${
-            imageUrlError ? 'modal__label-text_type_error' : ''
+            imageUrlError ? "modal__label-text_type_error" : ""
           }`}
         >
           {imageUrlError ? (
             <>
               Link<span className="modal__label-asterisk">*</span>
               <span className="modal__error-message" id={imageErrorId}>
-                {' '}
+                {" "}
                 (This is not a valid image link)
               </span>
             </>
           ) : (
-            'Image'
+            "Image"
           )}
         </span>
         <input
           className={`modal__input ui-text-2 ${
-            imageUrlError ? 'modal__input_type_error' : ''
+            imageUrlError ? "modal__input_type_error" : ""
           }`}
           id="add-clothes-image"
           name="garmentImage"
@@ -68,7 +68,7 @@ function AddGarmentForm({
             type="radio"
             name="garmentWeather"
             value="hot"
-            checked={weather === 'hot'}
+            checked={weather === "hot"}
             onChange={(event) => onWeatherChange(event.target.value)}
           />
           <span className="modal__radio-text ui-text-2_bold">Hot</span>
@@ -80,7 +80,7 @@ function AddGarmentForm({
             type="radio"
             name="garmentWeather"
             value="warm"
-            checked={weather === 'warm'}
+            checked={weather === "warm"}
             onChange={(event) => onWeatherChange(event.target.value)}
           />
           <span className="modal__radio-text ui-text-2_bold">Warm</span>
@@ -92,14 +92,14 @@ function AddGarmentForm({
             type="radio"
             name="garmentWeather"
             value="cold"
-            checked={weather === 'cold'}
+            checked={weather === "cold"}
             onChange={(event) => onWeatherChange(event.target.value)}
           />
           <span className="modal__radio-text ui-text-2_bold">Cold</span>
         </label>
       </fieldset>
     </>
-  )
+  );
 }
 
-export default AddGarmentForm
+export default AddGarmentForm;

@@ -1,18 +1,19 @@
-import useModalClose from '../../utils/useModalClose'
-import '../ModalWithForm/ModalWithForm.css'
-import './ItemModal.css'
+import useModalClose from "../../utils/useModalClose";
+import "../ModalWithForm/ModalWithForm.css";
+import "./ItemModal.css";
 
-const ITEM_MODAL_TITLE_ID = 'item-modal-title'
+const ITEM_MODAL_TITLE_ID = "item-modal-title";
 
 function ItemModal({ selectedCard, isOpen, onClose }) {
-  useModalClose(isOpen, onClose)
+  useModalClose(isOpen, onClose);
 
   const weatherLabel = selectedCard
-    ? selectedCard.weather.charAt(0).toUpperCase() + selectedCard.weather.slice(1)
-    : ''
+    ? selectedCard.weather.charAt(0).toUpperCase() +
+      selectedCard.weather.slice(1)
+    : "";
 
   if (!isOpen) {
-    return null
+    return null;
   }
 
   return (
@@ -42,7 +43,10 @@ function ItemModal({ selectedCard, isOpen, onClose }) {
               src={selectedCard.link}
               alt={selectedCard.name}
             />
-            <h2 className="item-modal__title ui-text-1" id={ITEM_MODAL_TITLE_ID}>
+            <h2
+              className="item-modal__title ui-text-1"
+              id={ITEM_MODAL_TITLE_ID}
+            >
               {selectedCard.name}
             </h2>
             <p className="item-modal__weather ui-text-2">
@@ -52,7 +56,7 @@ function ItemModal({ selectedCard, isOpen, onClose }) {
         )}
       </div>
     </div>
-  )
+  );
 }
 
-export default ItemModal
+export default ItemModal;

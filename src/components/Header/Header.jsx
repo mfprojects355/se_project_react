@@ -1,14 +1,14 @@
-import logo from '../../assets/Logo.svg'
-import avatar from '../../assets/avatar.svg'
-import './Header.css'
+import logo from "../../assets/Logo.svg";
+import avatar from "../../assets/avatar.svg";
+import "./Header.css";
 
-const userName = 'Mohammad Farid'
+const userName = "Mohammad Farid";
 
 function Header({ weatherData, onAddClothesClick }) {
-  const currentDate = new Date().toLocaleString('default', {
-    month: 'long',
-    day: 'numeric',
-  })
+  const currentDate = new Date().toLocaleString("default", {
+    month: "long",
+    day: "numeric",
+  });
 
   return (
     <header className="header">
@@ -30,7 +30,7 @@ function Header({ weatherData, onAddClothesClick }) {
         <img className="header__avatar" src={avatar} alt={userName} />
       </div>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;

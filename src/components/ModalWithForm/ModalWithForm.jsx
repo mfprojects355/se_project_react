@@ -1,5 +1,5 @@
-import useModalClose from '../../utils/useModalClose'
-import './ModalWithForm.css'
+import useModalClose from "../../utils/useModalClose";
+import "./ModalWithForm.css";
 
 function ModalWithForm({
   isOpen,
@@ -11,17 +11,17 @@ function ModalWithForm({
   children,
   isSubmitDisabled = false,
 }) {
-  useModalClose(isOpen, onClose)
+  useModalClose(isOpen, onClose);
 
-  const titleId = `modal-${name}-title`
+  const titleId = `modal-${name}-title`;
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    onSubmit(event)
-  }
+    event.preventDefault();
+    onSubmit(event);
+  };
 
   if (!isOpen) {
-    return null
+    return null;
   }
 
   return (
@@ -47,11 +47,7 @@ function ModalWithForm({
         <h2 className="modal__title ui-text-1" id={titleId}>
           {title}
         </h2>
-        <form
-          className="modal__form"
-          name={name}
-          onSubmit={handleSubmit}
-        >
+        <form className="modal__form" name={name} onSubmit={handleSubmit}>
           {children}
           <button
             type="submit"
@@ -63,7 +59,7 @@ function ModalWithForm({
         </form>
       </div>
     </div>
-  )
+  );
 }
 
-export default ModalWithForm
+export default ModalWithForm;
