@@ -1,0 +1,21 @@
+.footer {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 100%;
+  margin-top: auto;
+  padding: 0 40px 20px;
+}
+
+.footer__text,
+.footer__year {
+  margin: 0;
+  color: var(--color-text-primary);
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 0 16px 20px;
+  }
+}

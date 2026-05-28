@@ -1,0 +1,161 @@
+:root {
+  --font-family: 'Cabinet Grotesk', Arial, sans-serif;
+
+  /* Colors */
+  --color-black: #000000;
+  --color-black-80: #00000080;
+  --color-black-60: #00000099;
+  --color-black-30: #0000004d;
+  --color-black-opacity-30: rgb(0 0 0 / 30%);
+  --color-white: #ffffff;
+  --color-gray-page: #f3f3f3;
+  --color-gray-placeholder: #838383;
+  --color-gray-close: #757575;
+  --color-error: #ff4d00;
+  --color-overlay: rgba(0, 0, 0, 0.5);
+  --color-weather-sunny: #00a3ff;
+  --color-weather-night: #1a3a52;
+  --color-transparent: transparent;
+
+  /* Weather card temperature */
+  --weather-card-temp-size: 36px;
+  --weather-card-temp-line-height: 1;
+
+  /* Item card */
+  --item-card-width: 323px;
+  --item-card-height: 326px;
+  --item-card-gap: 20px;
+
+  /* Item modal */
+  --item-modal-width: 498px;
+  --item-card-border: 1px solid var(--color-black-30);
+  --item-card-bg: var(--color-black-opacity-30);
+  --item-card-label-height: 24px;
+  --item-card-label-padding-block: 2px;
+  --item-card-label-padding-inline: 12px;
+  --item-card-label-radius: 4px;
+  --item-card-label-gap: 8px;
+  --item-card-label-bg: var(--color-white);
+
+  /* Semantic colors */
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: var(--color-black-80);
+  --color-text-inverse: var(--color-white);
+  --color-text-placeholder: var(--color-gray-placeholder);
+  --color-text-error: var(--color-error);
+  --color-bg-page: var(--color-gray-page);
+  --color-bg-surface: var(--color-white);
+  --color-border-primary: var(--color-black);
+  --color-border-hover: var(--color-black-60);
+  --color-border-disabled: var(--color-black-30);
+  --color-border-error: var(--color-error);
+
+  /* UI text style 1 — 20/24 Bold */
+  --ui-text-1-size: 20px;
+  --ui-text-1-line-height: 24px;
+  --ui-text-1-line-height-100: 100%;
+  --ui-text-1-weight: 700;
+
+  /* UI text style 2 — 16/20 Medium */
+  --ui-text-2-size: 16px;
+  --ui-text-2-line-height: 20px;
+  --ui-text-2-weight: 500;
+  --ui-text-2-vertical-align: bottom;
+
+  /* UI text style 2 Bold — 16/20 Bold */
+  --ui-text-2-bold-weight: 700;
+
+  --ui-text-letter-spacing: 0;
+
+  /* Button */
+  --button-bg: var(--color-black);
+  --button-bg-hover: var(--color-black-60);
+  --button-bg-disabled: var(--color-black-30);
+  --button-text: var(--color-white);
+}
+
+html {
+  overflow-x: clip;
+}
+
+body {
+  margin: 0;
+  overflow-x: clip;
+  font-family: var(--font-family);
+  font-size: var(--ui-text-2-size);
+  line-height: var(--ui-text-2-line-height);
+  font-weight: var(--ui-text-2-weight);
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-page);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* UI text style 1 / 20-24 Bold */
+.ui-text-1 {
+  font-family: var(--font-family);
+  font-size: var(--ui-text-1-size);
+  line-height: var(--ui-text-1-line-height);
+  font-weight: var(--ui-text-1-weight);
+  letter-spacing: var(--ui-text-letter-spacing);
+}
+
+/* UI text style 1 / 20 Bold, line-height 100% */
+.ui-text-1_100 {
+  font-family: var(--font-family);
+  font-size: var(--ui-text-1-size);
+  line-height: var(--ui-text-1-line-height-100);
+  font-weight: var(--ui-text-1-weight);
+  letter-spacing: var(--ui-text-letter-spacing);
+}
+
+/* UI text style 2 / 16-20 Medium */
+.ui-text-2 {
+  font-family: var(--font-family);
+  font-size: var(--ui-text-2-size);
+  line-height: var(--ui-text-2-line-height);
+  font-weight: var(--ui-text-2-weight);
+  letter-spacing: var(--ui-text-letter-spacing);
+  vertical-align: var(--ui-text-2-vertical-align);
+}
+
+/* UI text style 2 Bold / 16-20 Bold */
+.ui-text-2_bold {
+  font-family: var(--font-family);
+  font-size: var(--ui-text-2-size);
+  line-height: var(--ui-text-2-line-height);
+  font-weight: var(--ui-text-2-bold-weight);
+  letter-spacing: var(--ui-text-letter-spacing);
+}
+
+/* Button — default / hover / disabled */
+.button {
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 124px;
+  height: 36px;
+  margin: 0;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  font-family: var(--font-family);
+  font-size: var(--ui-text-2-size);
+  line-height: var(--ui-text-2-line-height);
+  font-weight: var(--ui-text-2-bold-weight);
+  opacity: 1;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button:hover:not(:disabled) {
+  background-color: var(--button-bg-hover);
+}
+
+.button:disabled {
+  background-color: var(--button-bg-disabled);
+  cursor: not-allowed;
+}

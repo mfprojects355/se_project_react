@@ -1,0 +1,31 @@
+.weather-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  width: 100%;
+  height: 80px;
+  padding: 0 20px;
+  border-radius: 12px;
+  background-color: var(--color-weather-sunny);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.weather-card_type_night {
+  background-color: var(--color-weather-night);
+}
+
+.weather-card__temp {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: var(--weather-card-temp-size);
+  font-weight: var(--ui-text-1-weight);
+  line-height: var(--weather-card-temp-line-height);
+  letter-spacing: var(--ui-text-letter-spacing);
+  color: var(--color-text-inverse);
+}
