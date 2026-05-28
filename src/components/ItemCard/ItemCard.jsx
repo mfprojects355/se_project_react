@@ -19,7 +19,7 @@ function ItemCard({ item, onCardClick }) {
       role="button"
       aria-label={`View ${item.name}`}
     >
-      <img className="item-card__image" src={item.link} alt="" />
+      <img className="item-card__image" src={item.link} alt={item.name} />
       <span className="item-card__name-container">
         <h2 className="item-card__name ui-text-2_bold">{item.name}</h2>
       </span>

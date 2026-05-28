@@ -1,4 +1,4 @@
-import { APIkey, coordinates, weatherCity } from "./constants";
+import { apiKey, coordinates, weatherCity } from "./constants";
 
 const WEATHER_API_URL = "https://api.openweathermap.org/data/2.5/weather";
 
@@ -41,14 +41,14 @@ export function processWeatherData(data) {
       C: temperatureC,
     },
     weather: getWeatherCondition(temperatureF),
-    city: weatherCity,
+    city: data.name,
     condition: data.weather[0].main.toLowerCase(),
     isDay,
   };
 }
 
 export async function fetchWeatherData() {
-  const url = `${WEATHER_API_URL}?lat=${coordinates.latitude}&lon=${coordinates.longitude}&units=imperial&appid=${APIkey}`;
+  const url = `${WEATHER_API_URL}?lat=${coordinates.latitude}&lon=${coordinates.longitude}&units=imperial&appid=${apiKey}`;
 
   const response = await fetch(url);
 

@@ -30,16 +30,15 @@ function AddGarmentForm({
             imageUrlError ? "modal__label-text_type_error" : ""
           }`}
         >
-          {imageUrlError ? (
+          Image URL
+          {imageUrlError && (
             <>
-              Link<span className="modal__label-asterisk">*</span>
+              <span className="modal__label-asterisk">*</span>
               <span className="modal__error-message" id={imageErrorId}>
                 {" "}
                 (This is not a valid image link)
               </span>
             </>
-          ) : (
-            "Image"
           )}
         </span>
         <input
