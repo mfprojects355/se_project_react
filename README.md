@@ -16,6 +16,8 @@ A React app that shows the current weather for a city and recommends clothing it
 
 ## Getting started
 
+See **[SETUP.md](./SETUP.md)** for full instructions on setting up the project on a new laptop (installing Node.js, Git, running the mock server, etc.).
+
 Run **two terminals**:
 
 ```bash
