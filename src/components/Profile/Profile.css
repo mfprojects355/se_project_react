@@ -1,0 +1,40 @@
+.profile {
+  box-sizing: border-box;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  column-gap: 40px;
+  row-gap: 16px;
+  width: 100%;
+  margin-top: 40px;
+  padding: 0 40px;
+}
+
+.profile__sidebar {
+  grid-column: 1;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+}
+
+.profile__clothes {
+  display: contents;
+}
+
+@media screen and (max-width: 768px) {
+  .profile {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 16px;
+  }
+
+  .profile__sidebar {
+    width: 100%;
+  }
+
+  .profile__clothes {
+    display: block;
+    width: 100%;
+  }
+}

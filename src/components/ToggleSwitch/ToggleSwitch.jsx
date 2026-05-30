@@ -1,13 +1,19 @@
+import { useContext } from "react";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import "./ToggleSwitch.css";
 
-function ToggleSwitch({ currentTemperatureUnit, onToggle }) {
+function ToggleSwitch() {
+  const { currentTemperatureUnit, handleToggleSwitchChange } = useContext(
+    CurrentTemperatureUnitContext,
+  );
+
   return (
     <label className="toggle-switch">
       <input
         className="toggle-switch__checkbox"
         type="checkbox"
         checked={currentTemperatureUnit === "C"}
-        onChange={onToggle}
+        onChange={handleToggleSwitchChange}
         aria-label="Toggle temperature unit"
       />
       <span className="toggle-switch__thumb" />

@@ -16,8 +16,10 @@
   grid-template-columns: repeat(auto-fill, var(--item-card-width));
   gap: var(--item-card-gap);
   justify-content: start;
+  max-height: 676px;
   margin: 34px 0 0;
   padding: 0;
+  overflow-y: auto;
   list-style: none;
 }
 

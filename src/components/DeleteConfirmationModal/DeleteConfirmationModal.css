@@ -1,0 +1,78 @@
+.modal_type_delete-confirmation .delete-confirmation-modal__container {
+  min-height: 218px;
+  max-width: 648px;
+  padding: 30px 34px 34px;
+}
+
+.delete-confirmation-modal__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 648px;
+  text-align: center;
+}
+
+.delete-confirmation-modal__text {
+  margin: 36px 0 40px;
+  font-family: var(--font-family);
+  font-weight: var(--ui-text-1-weight);
+  font-size: var(--ui-text-1-size);
+  line-height: var(--ui-text-1-line-height);
+  letter-spacing: var(--ui-text-letter-spacing);
+  color: var(--color-text-primary);
+  text-align: center;
+}
+
+.delete-confirmation-modal__actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 17px;
+  width: 100%;
+}
+
+.delete-confirmation-modal__confirm-button,
+.delete-confirmation-modal__cancel-button {
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.delete-confirmation-modal__confirm-button {
+  width: auto;
+  min-width: 124px;
+  height: auto;
+  padding: 0;
+  border: none;
+  font-family: var(--font-family);
+  font-weight: var(--ui-text-1-weight);
+  font-size: var(--ui-text-1-size);
+  line-height: var(--ui-text-1-line-height);
+  letter-spacing: var(--ui-text-letter-spacing);
+  background-color: var(--color-transparent);
+  color: var(--color-error);
+}
+
+.delete-confirmation-modal__confirm-button:hover:not(:disabled) {
+  opacity: 0.6;
+  background-color: var(--color-transparent);
+}
+
+.delete-confirmation-modal__cancel-button {
+  font-family: var(--font-family);
+  font-weight: var(--ui-text-1-weight);
+  font-size: var(--ui-text-1-size);
+  line-height: var(--ui-text-1-line-height);
+  letter-spacing: var(--ui-text-letter-spacing);
+  width: auto;
+  min-width: 124px;
+  padding: 0;
+  border: none;
+  background-color: var(--color-transparent);
+  color: var(--color-text-primary);
+}
+
+.delete-confirmation-modal__cancel-button:hover:not(:disabled) {
+  opacity: 0.6;
+  background-color: var(--color-transparent);
+}

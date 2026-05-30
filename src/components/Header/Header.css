@@ -32,6 +32,30 @@
   margin: 0;
 }
 
+.header__logo-link,
+.header__profile-link {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+  transition: opacity 0.2s ease;
+}
+
+.header__logo-link:hover,
+.header__profile-link:hover {
+  opacity: 0.6;
+}
+
+.header__logo-link:focus-visible,
+.header__profile-link:focus-visible {
+  outline: 2px solid var(--color-text-primary);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
 .header__logo {
   display: block;
   width: 89px;

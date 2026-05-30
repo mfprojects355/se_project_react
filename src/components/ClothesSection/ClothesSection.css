@@ -1,0 +1,74 @@
+.clothes-section {
+  display: contents;
+  width: 100%;
+}
+
+.clothes-section__header {
+  grid-column: 2;
+  grid-row: 1;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  min-height: 40px;
+}
+
+.clothes-section__title {
+  margin: 0;
+  font-family: var(--font-family);
+  font-weight: var(--ui-text-1-weight);
+  font-size: var(--ui-text-1-size);
+  line-height: var(--ui-text-1-line-height-100);
+  letter-spacing: var(--ui-text-letter-spacing);
+  color: var(--color-black);
+}
+
+.clothes-section__add-button {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: var(--color-transparent);
+  font-family: var(--font-family);
+  font-weight: var(--ui-text-1-weight);
+  font-size: var(--ui-text-1-size);
+  line-height: var(--ui-text-1-line-height-100);
+  letter-spacing: var(--ui-text-letter-spacing);
+  color: var(--color-black-60);
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.clothes-section__add-button:hover {
+  opacity: 0.6;
+}
+
+.clothes-section__list {
+  grid-column: 2;
+  grid-row: 2;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, var(--item-card-width));
+  gap: var(--item-card-gap);
+  justify-content: start;
+  max-height: 676px;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+}
+
+@media screen and (max-width: 768px) {
+  .clothes-section {
+    display: block;
+  }
+
+  .clothes-section__header,
+  .clothes-section__list {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .clothes-section__list {
+    margin: 16px 0 0;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--item-card-gap);
+  }
+}

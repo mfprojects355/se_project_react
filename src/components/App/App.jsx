@@ -1,31 +1,31 @@
 import { useCallback, useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
+import Profile from "../Profile/Profile";
 import Footer from "../Footer/Footer";
-import ModalWithForm from "../ModalWithForm/ModalWithForm";
-import AddGarmentForm from "../AddGarmentForm/AddGarmentForm";
+import AddItemModal from "../AddItemModal/AddItemModal";
 import ItemModal from "../ItemModal/ItemModal";
-import { defaultClothingItems } from "../../utils/clothingItems";
-import isValidImageUrl from "../../utils/isValidImageUrl";
+import DeleteConfirmationModal from "../DeleteConfirmationModal/DeleteConfirmationModal";
+import { getItems, addItem, deleteItem } from "../../utils/api";
 import {
   fetchWeatherData,
   getDefaultWeatherData,
 } from "../../utils/weatherApi";
-import { MODAL_ADD_CLOTHES, MODAL_ITEM } from "../../utils/constants";
+import {
+  MODAL_ADD_CLOTHES,
+  MODAL_DELETE_CONFIRMATION,
+  MODAL_ITEM,
+} from "../../utils/constants";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import "./App.css";
-
-const INITIAL_GARMENT_FORM = {
-  name: "",
-  imageUrl: "",
-  weather: "hot",
-};
 
 function App() {
   const [activeModal, setActiveModal] = useState("");
   const [weatherData, setWeatherData] = useState(getDefaultWeatherData());
-  const [clothingItems, setClothingItems] = useState(defaultClothingItems);
+  const [clothingItems, setClothingItems] = useState([]);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [garmentForm, setGarmentForm] = useState(INITIAL_GARMENT_FORM);
+  const [cardToDelete, setCardToDelete] = useState(null);
   const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
   useEffect(() => {
@@ -37,27 +37,23 @@ function App() {
       });
   }, []);
 
-  const imageUrlError =
-    garmentForm.imageUrl.trim() !== "" &&
-    !isValidImageUrl(garmentForm.imageUrl);
-
-  const isGarmentFormValid =
-    garmentForm.name.trim() !== "" && isValidImageUrl(garmentForm.imageUrl);
-
-  const resetGarmentForm = useCallback(() => {
-    setGarmentForm(INITIAL_GARMENT_FORM);
+  useEffect(() => {
+    getItems()
+      .then(setClothingItems)
+      .catch((error) => {
+        console.error("Failed to fetch clothing items:", error.message);
+      });
   }, []);
 
   const handleCloseModal = useCallback(() => {
     setActiveModal("");
     setSelectedCard(null);
-    resetGarmentForm();
-  }, [resetGarmentForm]);
+    setCardToDelete(null);
+  }, []);
 
   const handleOpenAddClothesModal = useCallback(() => {
-    resetGarmentForm();
     setActiveModal(MODAL_ADD_CLOTHES);
-  }, [resetGarmentForm]);
+  }, []);
 
   const handleCardClick = useCallback((card) => {
     setSelectedCard(card);
@@ -68,74 +64,103 @@ function App() {
     setCurrentTemperatureUnit((prev) => (prev === "F" ? "C" : "F"));
   }, []);
 
-  const handleGarmentFormChange = useCallback((field, value) => {
-    setGarmentForm((prev) => ({ ...prev, [field]: value }));
+  const handleAddItem = useCallback(
+    ({ name, imageUrl, weather }, resetForm) => {
+      addItem({ name: name.trim(), imageUrl: imageUrl.trim(), weather })
+        .then((newItem) => {
+          setClothingItems((prev) => [newItem, ...prev]);
+          handleCloseModal();
+          resetForm();
+        })
+        .catch((error) => {
+          console.error("Failed to add clothing item:", error.message);
+        });
+    },
+    [handleCloseModal],
+  );
+
+  const openConfirmationModal = useCallback((card) => {
+    setCardToDelete(card);
+    setActiveModal(MODAL_DELETE_CONFIRMATION);
   }, []);
 
-  const handleAddGarmentSubmit = useCallback(
-    (event) => {
-      event.preventDefault();
+  const handleCloseDeleteConfirmation = useCallback(() => {
+    setCardToDelete(null);
+    setActiveModal(MODAL_ITEM);
+  }, []);
 
-      if (!isGarmentFormValid) {
-        return;
-      }
+  const handleCardDelete = useCallback(() => {
+    if (!cardToDelete) {
+      return;
+    }
 
-      const newItem = {
-        _id: Date.now(),
-        name: garmentForm.name.trim(),
-        link: garmentForm.imageUrl.trim(),
-        weather: garmentForm.weather,
-      };
-
-      setClothingItems((prev) => [...prev, newItem]);
-      handleCloseModal();
-    },
-    [garmentForm, handleCloseModal, isGarmentFormValid],
-  );
+    deleteItem(cardToDelete._id)
+      .then(() => {
+        setClothingItems((prev) =>
+          prev.filter((item) => item._id !== cardToDelete._id),
+        );
+        setCardToDelete(null);
+        setSelectedCard(null);
+        setActiveModal("");
+      })
+      .catch((error) => {
+        console.error("Failed to delete clothing item:", error.message);
+      });
+  }, [cardToDelete]);
 
   return (
     <div className="app">
-      <div className="app__content">
-        <Header
-          weatherData={weatherData}
-          onAddClothesClick={handleOpenAddClothesModal}
-          currentTemperatureUnit={currentTemperatureUnit}
-          onToggleSwitchChange={handleToggleSwitchChange}
-        />
-        <Main
-          weatherData={weatherData}
-          clothingItems={clothingItems}
-          onCardClick={handleCardClick}
-          currentTemperatureUnit={currentTemperatureUnit}
-        />
-        <Footer />
-      </div>
-      <ModalWithForm
-        isOpen={activeModal === MODAL_ADD_CLOTHES}
-        onClose={handleCloseModal}
-        onSubmit={handleAddGarmentSubmit}
-        title="New garment"
-        name={MODAL_ADD_CLOTHES}
-        buttonText="Add garment"
-        isSubmitDisabled={!isGarmentFormValid}
+      <CurrentTemperatureUnitContext.Provider
+        value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
-        <AddGarmentForm
-          name={garmentForm.name}
-          imageUrl={garmentForm.imageUrl}
-          weather={garmentForm.weather}
-          imageUrlError={imageUrlError}
-          onNameChange={(value) => handleGarmentFormChange("name", value)}
-          onImageUrlChange={(value) =>
-            handleGarmentFormChange("imageUrl", value)
-          }
-          onWeatherChange={(value) => handleGarmentFormChange("weather", value)}
+        <div className="app__content">
+          <Header
+            weatherData={weatherData}
+            onAddClothesClick={handleOpenAddClothesModal}
+          />
+          <div className="app__main">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Main
+                    weatherData={weatherData}
+                    clothingItems={clothingItems}
+                    onCardClick={handleCardClick}
+                  />
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <Profile
+                    clothingItems={clothingItems}
+                    onCardClick={handleCardClick}
+                    onAddNewClick={handleOpenAddClothesModal}
+                  />
+                }
+              />
+            </Routes>
+          </div>
+          <Footer />
+        </div>
+        <AddItemModal
+          isOpen={activeModal === MODAL_ADD_CLOTHES}
+          onAddItem={handleAddItem}
+          onCloseModal={handleCloseModal}
         />
-      </ModalWithForm>
-      <ItemModal
-        selectedCard={selectedCard}
-        isOpen={activeModal === MODAL_ITEM}
-        onClose={handleCloseModal}
-      />
+        <ItemModal
+          selectedCard={selectedCard}
+          isOpen={activeModal === MODAL_ITEM}
+          onClose={handleCloseModal}
+          onOpenConfirmationModal={openConfirmationModal}
+        />
+        <DeleteConfirmationModal
+          isOpen={activeModal === MODAL_DELETE_CONFIRMATION}
+          onClose={handleCloseDeleteConfirmation}
+          onConfirm={handleCardDelete}
+        />
+      </CurrentTemperatureUnitContext.Provider>
     </div>
   );
 }

@@ -1,23 +1,18 @@
+import { useContext } from "react";
 import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import "./Main.css";
 
-function Main({
-  weatherData,
-  clothingItems,
-  onCardClick,
-  currentTemperatureUnit,
-}) {
+function Main({ weatherData, clothingItems, onCardClick }) {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const filteredClothingItems = clothingItems.filter(
     (item) => item.weather === weatherData.weather,
   );
 
   return (
     <main className="main">
-      <WeatherCard
-        weatherData={weatherData}
-        currentTemperatureUnit={currentTemperatureUnit}
-      />
+      <WeatherCard weatherData={weatherData} />
       <p className="main__banner ui-text-1_100">
         Today is {weatherData.temperature[currentTemperatureUnit]}°
         {currentTemperatureUnit} / You may want to wear:

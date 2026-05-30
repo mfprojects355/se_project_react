@@ -4,13 +4,19 @@ import "./ItemModal.css";
 
 const ITEM_MODAL_TITLE_ID = "item-modal-title";
 
-function ItemModal({ selectedCard, isOpen, onClose }) {
+function ItemModal({ selectedCard, isOpen, onClose, onOpenConfirmationModal }) {
   useModalClose(isOpen, onClose);
 
   const weatherLabel = selectedCard
     ? selectedCard.weather.charAt(0).toUpperCase() +
       selectedCard.weather.slice(1)
     : "";
+
+  const handleDeleteClick = () => {
+    if (selectedCard) {
+      onOpenConfirmationModal(selectedCard);
+    }
+  };
 
   return (
     <div
@@ -39,12 +45,21 @@ function ItemModal({ selectedCard, isOpen, onClose }) {
               src={selectedCard.link}
               alt={selectedCard.name}
             />
-            <h2
-              className="item-modal__title ui-text-1"
-              id={ITEM_MODAL_TITLE_ID}
-            >
-              {selectedCard.name}
-            </h2>
+            <div className="item-modal__header">
+              <h2
+                className="item-modal__title ui-text-1"
+                id={ITEM_MODAL_TITLE_ID}
+              >
+                {selectedCard.name}
+              </h2>
+              <button
+                type="button"
+                className="item-modal__delete-button ui-text-2_bold"
+                onClick={handleDeleteClick}
+              >
+                Delete item
+              </button>
+            </div>
             <p className="item-modal__weather ui-text-2">
               Weather: {weatherLabel}
             </p>

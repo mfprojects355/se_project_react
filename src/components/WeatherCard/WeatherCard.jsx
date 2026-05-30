@@ -1,7 +1,10 @@
+import { useContext } from "react";
 import sunnyBackground from "../../assets/sunny.svg";
+import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 import "./WeatherCard.css";
 
-function WeatherCard({ weatherData, currentTemperatureUnit }) {
+function WeatherCard({ weatherData }) {
+  const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
   const { temperature, isDay } = weatherData;
   const temp = temperature[currentTemperatureUnit];
 
