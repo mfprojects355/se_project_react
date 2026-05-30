@@ -1,6 +1,6 @@
 # WTWR — What to Wear?
 
-A React app that shows the current weather for a city and recommends clothing items that match the temperature (hot, warm, or cold). You can browse items, open item details in a modal, and add your own garments.
+A React app that shows the current weather for a city and recommends clothing items that match the temperature (hot, warm, or cold). You can browse items, open item details in a modal, add garments, and delete them from your profile.
 
 **Author:** Mohammad Farid
 
@@ -10,23 +10,35 @@ A React app that shows the current weather for a city and recommends clothing it
 
 - React 18
 - Vite
+- React Router
+- json-server (mock API)
 - CSS (BEM)
 
 ## Getting started
 
+Run **two terminals**:
+
 ```bash
+# Terminal 1 — mock API (required for clothing items)
+npm run server
+
+# Terminal 2 — React app
 npm install
 npm run dev
 ```
 
+The mock server reads `db.json` in the project root at `http://localhost:3001`.
+
 ## Scripts
 
-| Command           | Description              |
-| ----------------- | ------------------------ |
-| `npm run dev`     | Start dev server         |
-| `npm run build`   | Production build         |
-| `npm run lint`    | Run ESLint               |
-| `npm run preview` | Preview production build |
+| Command           | Description                              |
+| ----------------- | ---------------------------------------- |
+| `npm run dev`     | Start Vite dev server                    |
+| `npm run server`  | Start json-server on port 3001           |
+| `npm run build`   | Production build                         |
+| `npm run lint`    | Run ESLint                               |
+| `npm run format`  | Format code with Prettier                |
+| `npm run preview` | Preview production build                 |
 
 ## Weather API
 
@@ -35,9 +47,12 @@ Set your OpenWeatherMap API key in `src/utils/constants.js`. Update `weatherCity
 ## Project structure
 
 ```
+db.json             # Mock clothing items database
 src/
-├── components/     # UI components (App, Header, Main, modals, cards)
-├── utils/          # API helpers, constants, default clothing items
+├── components/     # UI components (App, Header, Main, Profile, modals, cards)
+├── contexts/       # CurrentTemperatureUnitContext
+├── hooks/          # useForm
+├── utils/          # api.js, constants.js, weatherApi.js
 ├── assets/         # Images and icons
 └── vendor/         # normalize.css and fonts
 ```

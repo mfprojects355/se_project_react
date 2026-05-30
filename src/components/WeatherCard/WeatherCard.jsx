@@ -11,7 +11,7 @@ function WeatherCard({ weatherData }) {
   return (
     <article
       className={`weather-card ${isDay ? "" : "weather-card_type_night"}`}
-      style={isDay ? { backgroundImage: `url(${sunnyBackground})` } : undefined}
+      style={{ backgroundImage: `url(${sunnyBackground})` }}
       aria-label={`Current temperature, ${temp} degrees ${currentTemperatureUnit === "F" ? "Fahrenheit" : "Celsius"}`}
     >
       <p className="weather-card__temp">

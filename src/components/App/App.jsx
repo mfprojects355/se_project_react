@@ -110,6 +110,7 @@ function App() {
 
   return (
     <div className="app">
+      <h1 className="visually-hidden">WTWR — What to Wear?</h1>
       <CurrentTemperatureUnitContext.Provider
         value={{ currentTemperatureUnit, handleToggleSwitchChange }}
       >
