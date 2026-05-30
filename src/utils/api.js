@@ -1,6 +1,6 @@
 const baseUrl = "http://localhost:3001";
 
-function checkResponse(response) {
+export function checkResponse(response) {
   if (!response.ok) {
     return response
       .json()
@@ -29,7 +29,9 @@ function normalizeItem(item) {
 export function getItems() {
   return fetch(`${baseUrl}/items`)
     .then(checkResponse)
-    .then((items) => items.map(normalizeItem));
+    .then((items) =>
+      items.map(normalizeItem).sort((a, b) => b._id - a._id),
+    );
 }
 
 export function addItem({ name, imageUrl, weather }) {

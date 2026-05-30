@@ -68,7 +68,7 @@ function App() {
     ({ name, imageUrl, weather }, resetForm) => {
       addItem({ name: name.trim(), imageUrl: imageUrl.trim(), weather })
         .then((newItem) => {
-          setClothingItems((prev) => [...prev, newItem]);
+          setClothingItems((prev) => [newItem, ...prev]);
           handleCloseModal();
           resetForm();
         })
