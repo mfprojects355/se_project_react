@@ -12,13 +12,9 @@ function ItemModal({ selectedCard, isOpen, onClose }) {
       selectedCard.weather.slice(1)
     : "";
 
-  if (!isOpen) {
-    return null;
-  }
-
   return (
     <div
-      className="modal modal_type_item modal_is-opened"
+      className={`modal modal_type_item ${isOpen ? "modal_is-opened" : ""}`}
       role="dialog"
       aria-modal="true"
       aria-labelledby={ITEM_MODAL_TITLE_ID}

@@ -90,16 +90,18 @@ function App() {
 
   return (
     <div className="app">
-      <Header
-        weatherData={weatherData}
-        onAddClothesClick={handleOpenAddClothesModal}
-      />
-      <Main
-        weatherData={weatherData}
-        clothingItems={clothingItems}
-        onCardClick={handleCardClick}
-      />
-      <Footer />
+      <div className="app__content">
+        <Header
+          weatherData={weatherData}
+          onAddClothesClick={handleOpenAddClothesModal}
+        />
+        <Main
+          weatherData={weatherData}
+          clothingItems={clothingItems}
+          onCardClick={handleCardClick}
+        />
+        <Footer />
+      </div>
       <ModalWithForm
         isOpen={activeModal === MODAL_ADD_CLOTHES}
         onClose={handleCloseModal}

@@ -20,13 +20,9 @@ function ModalWithForm({
     onSubmit(event);
   };
 
-  if (!isOpen) {
-    return null;
-  }
-
   return (
     <div
-      className={`modal modal_type_${name} modal_is-opened`}
+      className={`modal modal_type_${name} ${isOpen ? "modal_is-opened" : ""}`}
       role="dialog"
       aria-modal="true"
       aria-labelledby={titleId}
