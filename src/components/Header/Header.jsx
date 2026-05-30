@@ -1,10 +1,16 @@
 import logo from "../../assets/Logo.svg";
 import avatar from "../../assets/avatar.svg";
+import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
 import "./Header.css";
 
 const userName = "Mohammad Farid";
 
-function Header({ weatherData, onAddClothesClick }) {
+function Header({
+  weatherData,
+  onAddClothesClick,
+  currentTemperatureUnit,
+  onToggleSwitchChange,
+}) {
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
@@ -19,6 +25,10 @@ function Header({ weatherData, onAddClothesClick }) {
         </p>
       </div>
       <div className="header__right">
+        <ToggleSwitch
+          currentTemperatureUnit={currentTemperatureUnit}
+          onToggle={onToggleSwitchChange}
+        />
         <button
           type="button"
           className="header__add-button ui-text-1"

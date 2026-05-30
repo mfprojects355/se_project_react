@@ -26,6 +26,7 @@ function App() {
   const [clothingItems, setClothingItems] = useState(defaultClothingItems);
   const [selectedCard, setSelectedCard] = useState(null);
   const [garmentForm, setGarmentForm] = useState(INITIAL_GARMENT_FORM);
+  const [currentTemperatureUnit, setCurrentTemperatureUnit] = useState("F");
 
   useEffect(() => {
     fetchWeatherData()
@@ -63,6 +64,10 @@ function App() {
     setActiveModal(MODAL_ITEM);
   }, []);
 
+  const handleToggleSwitchChange = useCallback(() => {
+    setCurrentTemperatureUnit((prev) => (prev === "F" ? "C" : "F"));
+  }, []);
+
   const handleGarmentFormChange = useCallback((field, value) => {
     setGarmentForm((prev) => ({ ...prev, [field]: value }));
   }, []);
@@ -94,11 +99,14 @@ function App() {
         <Header
           weatherData={weatherData}
           onAddClothesClick={handleOpenAddClothesModal}
+          currentTemperatureUnit={currentTemperatureUnit}
+          onToggleSwitchChange={handleToggleSwitchChange}
         />
         <Main
           weatherData={weatherData}
           clothingItems={clothingItems}
           onCardClick={handleCardClick}
+          currentTemperatureUnit={currentTemperatureUnit}
         />
         <Footer />
       </div>

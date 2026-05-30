@@ -2,16 +2,25 @@ import WeatherCard from "../WeatherCard/WeatherCard";
 import ItemCard from "../ItemCard/ItemCard";
 import "./Main.css";
 
-function Main({ weatherData, clothingItems, onCardClick }) {
+function Main({
+  weatherData,
+  clothingItems,
+  onCardClick,
+  currentTemperatureUnit,
+}) {
   const filteredClothingItems = clothingItems.filter(
     (item) => item.weather === weatherData.weather,
   );
 
   return (
     <main className="main">
-      <WeatherCard weatherData={weatherData} />
+      <WeatherCard
+        weatherData={weatherData}
+        currentTemperatureUnit={currentTemperatureUnit}
+      />
       <p className="main__banner ui-text-1_100">
-        Today is {weatherData.temperature.F}° F / You may want to wear:
+        Today is {weatherData.temperature[currentTemperatureUnit]}°
+        {currentTemperatureUnit} / You may want to wear:
       </p>
       <ul className="main__cards-list">
         {filteredClothingItems.map((item) => (
