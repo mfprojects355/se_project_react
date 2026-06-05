@@ -16,8 +16,7 @@ function AddItemModal({ isOpen, onAddItem, onCloseModal }) {
     onCloseModal();
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleSubmit = () => {
     onAddItem(values, resetForm);
   };
 

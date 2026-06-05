@@ -30,6 +30,7 @@
 
   /* Item modal */
   --item-modal-width: 498px;
+  --item-modal-image-height: 498px;
   --item-card-border: 1px solid var(--color-black-30);
   --item-card-bg: var(--color-black-opacity-30);
   --item-card-label-height: 24px;

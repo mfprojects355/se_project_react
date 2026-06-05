@@ -17,6 +17,7 @@
   display: block;
   width: 100%;
   max-width: var(--item-modal-width);
+  height: var(--item-modal-image-height);
   border-radius: 0;
   object-fit: cover;
 }
